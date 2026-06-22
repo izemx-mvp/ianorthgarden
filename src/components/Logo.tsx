@@ -1,10 +1,10 @@
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoUrl from "@/assets/logo.png";
 
 export function Logo({ size = 40, withText = false }: { size?: number; withText?: boolean }) {
   return (
     <div className="flex items-center gap-3">
       <img
-        src={logoAsset.url}
+        src={logoUrl}
         alt="THE NORTH GARDEN"
         width={size}
         height={size}
