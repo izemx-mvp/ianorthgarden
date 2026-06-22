@@ -9,38 +9,192 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppVeilleRouteImport } from './routes/app.veille'
+import { Route as AppUtilisateursRouteImport } from './routes/app.utilisateurs'
+import { Route as AppTachesRouteImport } from './routes/app.taches'
+import { Route as AppParametresRouteImport } from './routes/app.parametres'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppMemoireRouteImport } from './routes/app.memoire'
+import { Route as AppDossiersRouteImport } from './routes/app.dossiers'
+import { Route as AppDocumentsRouteImport } from './routes/app.documents'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppAnalyseIaRouteImport } from './routes/app.analyse-ia'
 
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppVeilleRoute = AppVeilleRouteImport.update({
+  id: '/veille',
+  path: '/veille',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUtilisateursRoute = AppUtilisateursRouteImport.update({
+  id: '/utilisateurs',
+  path: '/utilisateurs',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTachesRoute = AppTachesRouteImport.update({
+  id: '/taches',
+  path: '/taches',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppParametresRoute = AppParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMemoireRoute = AppMemoireRouteImport.update({
+  id: '/memoire',
+  path: '/memoire',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDossiersRoute = AppDossiersRouteImport.update({
+  id: '/dossiers',
+  path: '/dossiers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDocumentsRoute = AppDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyseIaRoute = AppAnalyseIaRouteImport.update({
+  id: '/analyse-ia',
+  path: '/analyse-ia',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/analyse-ia': typeof AppAnalyseIaRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/dossiers': typeof AppDossiersRoute
+  '/app/memoire': typeof AppMemoireRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
+  '/app/taches': typeof AppTachesRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
+  '/app/veille': typeof AppVeilleRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/analyse-ia': typeof AppAnalyseIaRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/dossiers': typeof AppDossiersRoute
+  '/app/memoire': typeof AppMemoireRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
+  '/app/taches': typeof AppTachesRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
+  '/app/veille': typeof AppVeilleRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/analyse-ia': typeof AppAnalyseIaRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/dossiers': typeof AppDossiersRoute
+  '/app/memoire': typeof AppMemoireRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
+  '/app/taches': typeof AppTachesRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
+  '/app/veille': typeof AppVeilleRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/analyse-ia'
+    | '/app/dashboard'
+    | '/app/documents'
+    | '/app/dossiers'
+    | '/app/memoire'
+    | '/app/notifications'
+    | '/app/parametres'
+    | '/app/taches'
+    | '/app/utilisateurs'
+    | '/app/veille'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app/analyse-ia'
+    | '/app/dashboard'
+    | '/app/documents'
+    | '/app/dossiers'
+    | '/app/memoire'
+    | '/app/notifications'
+    | '/app/parametres'
+    | '/app/taches'
+    | '/app/utilisateurs'
+    | '/app/veille'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/analyse-ia'
+    | '/app/dashboard'
+    | '/app/documents'
+    | '/app/dossiers'
+    | '/app/memoire'
+    | '/app/notifications'
+    | '/app/parametres'
+    | '/app/taches'
+    | '/app/utilisateurs'
+    | '/app/veille'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +202,120 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/veille': {
+      id: '/app/veille'
+      path: '/veille'
+      fullPath: '/app/veille'
+      preLoaderRoute: typeof AppVeilleRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/utilisateurs': {
+      id: '/app/utilisateurs'
+      path: '/utilisateurs'
+      fullPath: '/app/utilisateurs'
+      preLoaderRoute: typeof AppUtilisateursRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/taches': {
+      id: '/app/taches'
+      path: '/taches'
+      fullPath: '/app/taches'
+      preLoaderRoute: typeof AppTachesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/parametres': {
+      id: '/app/parametres'
+      path: '/parametres'
+      fullPath: '/app/parametres'
+      preLoaderRoute: typeof AppParametresRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/memoire': {
+      id: '/app/memoire'
+      path: '/memoire'
+      fullPath: '/app/memoire'
+      preLoaderRoute: typeof AppMemoireRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dossiers': {
+      id: '/app/dossiers'
+      path: '/dossiers'
+      fullPath: '/app/dossiers'
+      preLoaderRoute: typeof AppDossiersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/documents': {
+      id: '/app/documents'
+      path: '/documents'
+      fullPath: '/app/documents'
+      preLoaderRoute: typeof AppDocumentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analyse-ia': {
+      id: '/app/analyse-ia'
+      path: '/analyse-ia'
+      fullPath: '/app/analyse-ia'
+      preLoaderRoute: typeof AppAnalyseIaRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAnalyseIaRoute: typeof AppAnalyseIaRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppDocumentsRoute: typeof AppDocumentsRoute
+  AppDossiersRoute: typeof AppDossiersRoute
+  AppMemoireRoute: typeof AppMemoireRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppParametresRoute: typeof AppParametresRoute
+  AppTachesRoute: typeof AppTachesRoute
+  AppUtilisateursRoute: typeof AppUtilisateursRoute
+  AppVeilleRoute: typeof AppVeilleRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAnalyseIaRoute: AppAnalyseIaRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppDocumentsRoute: AppDocumentsRoute,
+  AppDossiersRoute: AppDossiersRoute,
+  AppMemoireRoute: AppMemoireRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppParametresRoute: AppParametresRoute,
+  AppTachesRoute: AppTachesRoute,
+  AppUtilisateursRoute: AppUtilisateursRoute,
+  AppVeilleRoute: AppVeilleRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
