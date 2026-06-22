@@ -13,7 +13,13 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppVeilleRouteImport } from './routes/app.veille'
+import { Route as AppUtilisateursRouteImport } from './routes/app.utilisateurs'
+import { Route as AppTachesRouteImport } from './routes/app.taches'
+import { Route as AppParametresRouteImport } from './routes/app.parametres'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppMemoireRouteImport } from './routes/app.memoire'
 import { Route as AppDossiersRouteImport } from './routes/app.dossiers'
+import { Route as AppDocumentsRouteImport } from './routes/app.documents'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppAnalyseIaRouteImport } from './routes/app.analyse-ia'
 
@@ -37,9 +43,39 @@ const AppVeilleRoute = AppVeilleRouteImport.update({
   path: '/veille',
   getParentRoute: () => AppRoute,
 } as any)
+const AppUtilisateursRoute = AppUtilisateursRouteImport.update({
+  id: '/utilisateurs',
+  path: '/utilisateurs',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTachesRoute = AppTachesRouteImport.update({
+  id: '/taches',
+  path: '/taches',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppParametresRoute = AppParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMemoireRoute = AppMemoireRouteImport.update({
+  id: '/memoire',
+  path: '/memoire',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDossiersRoute = AppDossiersRouteImport.update({
   id: '/dossiers',
   path: '/dossiers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDocumentsRoute = AppDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
@@ -58,7 +94,13 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/app/analyse-ia': typeof AppAnalyseIaRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
   '/app/dossiers': typeof AppDossiersRoute
+  '/app/memoire': typeof AppMemoireRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
+  '/app/taches': typeof AppTachesRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
   '/app/veille': typeof AppVeilleRoute
   '/app/': typeof AppIndexRoute
 }
@@ -66,7 +108,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/analyse-ia': typeof AppAnalyseIaRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
   '/app/dossiers': typeof AppDossiersRoute
+  '/app/memoire': typeof AppMemoireRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
+  '/app/taches': typeof AppTachesRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
   '/app/veille': typeof AppVeilleRoute
   '/app': typeof AppIndexRoute
 }
@@ -76,7 +124,13 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/app/analyse-ia': typeof AppAnalyseIaRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
   '/app/dossiers': typeof AppDossiersRoute
+  '/app/memoire': typeof AppMemoireRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
+  '/app/taches': typeof AppTachesRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
   '/app/veille': typeof AppVeilleRoute
   '/app/': typeof AppIndexRoute
 }
@@ -87,7 +141,13 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/analyse-ia'
     | '/app/dashboard'
+    | '/app/documents'
     | '/app/dossiers'
+    | '/app/memoire'
+    | '/app/notifications'
+    | '/app/parametres'
+    | '/app/taches'
+    | '/app/utilisateurs'
     | '/app/veille'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
@@ -95,7 +155,13 @@ export interface FileRouteTypes {
     | '/'
     | '/app/analyse-ia'
     | '/app/dashboard'
+    | '/app/documents'
     | '/app/dossiers'
+    | '/app/memoire'
+    | '/app/notifications'
+    | '/app/parametres'
+    | '/app/taches'
+    | '/app/utilisateurs'
     | '/app/veille'
     | '/app'
   id:
@@ -104,7 +170,13 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/analyse-ia'
     | '/app/dashboard'
+    | '/app/documents'
     | '/app/dossiers'
+    | '/app/memoire'
+    | '/app/notifications'
+    | '/app/parametres'
+    | '/app/taches'
+    | '/app/utilisateurs'
     | '/app/veille'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -144,11 +216,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppVeilleRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/utilisateurs': {
+      id: '/app/utilisateurs'
+      path: '/utilisateurs'
+      fullPath: '/app/utilisateurs'
+      preLoaderRoute: typeof AppUtilisateursRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/taches': {
+      id: '/app/taches'
+      path: '/taches'
+      fullPath: '/app/taches'
+      preLoaderRoute: typeof AppTachesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/parametres': {
+      id: '/app/parametres'
+      path: '/parametres'
+      fullPath: '/app/parametres'
+      preLoaderRoute: typeof AppParametresRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/memoire': {
+      id: '/app/memoire'
+      path: '/memoire'
+      fullPath: '/app/memoire'
+      preLoaderRoute: typeof AppMemoireRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/dossiers': {
       id: '/app/dossiers'
       path: '/dossiers'
       fullPath: '/app/dossiers'
       preLoaderRoute: typeof AppDossiersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/documents': {
+      id: '/app/documents'
+      path: '/documents'
+      fullPath: '/app/documents'
+      preLoaderRoute: typeof AppDocumentsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/dashboard': {
@@ -171,7 +285,13 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppAnalyseIaRoute: typeof AppAnalyseIaRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppDocumentsRoute: typeof AppDocumentsRoute
   AppDossiersRoute: typeof AppDossiersRoute
+  AppMemoireRoute: typeof AppMemoireRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppParametresRoute: typeof AppParametresRoute
+  AppTachesRoute: typeof AppTachesRoute
+  AppUtilisateursRoute: typeof AppUtilisateursRoute
   AppVeilleRoute: typeof AppVeilleRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -179,7 +299,13 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppAnalyseIaRoute: AppAnalyseIaRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppDocumentsRoute: AppDocumentsRoute,
   AppDossiersRoute: AppDossiersRoute,
+  AppMemoireRoute: AppMemoireRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppParametresRoute: AppParametresRoute,
+  AppTachesRoute: AppTachesRoute,
+  AppUtilisateursRoute: AppUtilisateursRoute,
   AppVeilleRoute: AppVeilleRoute,
   AppIndexRoute: AppIndexRoute,
 }
