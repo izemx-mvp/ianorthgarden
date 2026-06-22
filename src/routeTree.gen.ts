@@ -12,6 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppVeilleRouteImport } from './routes/app.veille'
+import { Route as AppDossiersRouteImport } from './routes/app.dossiers'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppAnalyseIaRouteImport } from './routes/app.analyse-ia'
 
 const AppRoute = AppRouteImport.update({
   id: '/app',
@@ -28,28 +32,81 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppVeilleRoute = AppVeilleRouteImport.update({
+  id: '/veille',
+  path: '/veille',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDossiersRoute = AppDossiersRouteImport.update({
+  id: '/dossiers',
+  path: '/dossiers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyseIaRoute = AppAnalyseIaRouteImport.update({
+  id: '/analyse-ia',
+  path: '/analyse-ia',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/analyse-ia': typeof AppAnalyseIaRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/dossiers': typeof AppDossiersRoute
+  '/app/veille': typeof AppVeilleRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/analyse-ia': typeof AppAnalyseIaRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/dossiers': typeof AppDossiersRoute
+  '/app/veille': typeof AppVeilleRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/analyse-ia': typeof AppAnalyseIaRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/dossiers': typeof AppDossiersRoute
+  '/app/veille': typeof AppVeilleRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/analyse-ia'
+    | '/app/dashboard'
+    | '/app/dossiers'
+    | '/app/veille'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app'
-  id: '__root__' | '/' | '/app' | '/app/'
+  to:
+    | '/'
+    | '/app/analyse-ia'
+    | '/app/dashboard'
+    | '/app/dossiers'
+    | '/app/veille'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/analyse-ia'
+    | '/app/dashboard'
+    | '/app/dossiers'
+    | '/app/veille'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,14 +137,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/veille': {
+      id: '/app/veille'
+      path: '/veille'
+      fullPath: '/app/veille'
+      preLoaderRoute: typeof AppVeilleRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dossiers': {
+      id: '/app/dossiers'
+      path: '/dossiers'
+      fullPath: '/app/dossiers'
+      preLoaderRoute: typeof AppDossiersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analyse-ia': {
+      id: '/app/analyse-ia'
+      path: '/analyse-ia'
+      fullPath: '/app/analyse-ia'
+      preLoaderRoute: typeof AppAnalyseIaRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAnalyseIaRoute: typeof AppAnalyseIaRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppDossiersRoute: typeof AppDossiersRoute
+  AppVeilleRoute: typeof AppVeilleRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalyseIaRoute: AppAnalyseIaRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppDossiersRoute: AppDossiersRoute,
+  AppVeilleRoute: AppVeilleRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
